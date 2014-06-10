@@ -64,8 +64,8 @@ public class CoreService {
 					Article article =new Article();
 					article.setTitle("创联龙盛文化传媒公司");
 					article.setDescription("武汉市江汉区京汉大道万科金色家园二期商业街321室");
-					article.setPicUrl("https://svn.duapp.com/appid3acr54oexy/image/mp.jpg");
-					article.setUrl("");
+					article.setPicUrl("https://weixinshgj.duapp.com/image/mp.jpg");
+					article.setUrl("https://weixinshgj.duapp.com/image/mp.jpg");
 					articleList.add(article);
 				}
 			}
