@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -12,6 +13,8 @@ import org.liufeng.course.message.resp.TextMessage;
 import org.liufeng.course.util.MessageUtil;
 import org.liufeng.course.message.resp.Article;
 import org.liufeng.course.message.resp.NewsMessage;
+
+import com.sun.corba.se.spi.legacy.connection.LegacyServerSocketEndPointInfo;
 
 /**
  * 核心服务类
@@ -47,7 +50,7 @@ public class CoreService {
 			textMessage.setFromUserName(toUserName);
 			textMessage.setCreateTime(new Date().getTime());
 			textMessage.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_TEXT);
-			
+
 			NewsMessage newsMessage = new NewsMessage();
 			newsMessage.setToUserName(fromUserName);
 			newsMessage.setFromUserName(toUserName);
@@ -58,15 +61,29 @@ public class CoreService {
 			// 文本消息
 			if (msgType.equals(MessageUtil.REQ_MESSAGE_TYPE_TEXT)) {
 				String content = requestMap.get("Content");
-				Pattern p1 = Pattern.compile("1");
-				Matcher m1 = p1.matcher(content);
-				if(m1.find()){
-					Article article =new Article();
+				if ("1".equals(content)) {
+					Article article = new Article();
 					article.setTitle("创联龙盛文化传媒公司");
 					article.setDescription("武汉市江汉区京汉大道万科金色家园二期商业街321室");
 					article.setPicUrl("https://weixinshgj.duapp.com/image/mp.jpg");
-					article.setUrl("https://weixinshgj.duapp.com/image/mp.jpg");
+					article.setUrl("http://mp.weixin.qq.com/s?__biz=MzA5MTY4NTczNQ==&mid=200332988&idx=1&sn=c037f49bd41b4ed5622e0ac2e0e6a14a#rd");
 					articleList.add(article);
+					newsMessage.setArticleCount(articleList.size());
+					newsMessage.setArticles(articleList);
+					respXml = MessageUtil.messageToXml(newsMessage);
+				} else if ("3".equals(content)) {
+
+				} else if ("4".equals(content)) {
+
+				} else if ("5".equals(content)) {
+
+				} else if ("6".equals(content)) {
+
+				} else if ("7".equals(content)) {
+
+				} else {
+					textMessage.setContent(getDefaultAnswer());
+					respXml = MessageUtil.messageToXml(textMessage);
 				}
 			}
 			// 图片消息
@@ -95,7 +112,21 @@ public class CoreService {
 				String eventType = requestMap.get("Event");
 				// 关注
 				if (eventType.equals(MessageUtil.EVENT_TYPE_SUBSCRIBE)) {
-					respContent = "谢谢您的关注！";
+					Article article1 = new Article();
+					article1.setTitle("创联龙盛文化传媒公司");
+					article1.setDescription("武汉市江汉区京汉大道万科金色家园二期商业街321室");
+					article1.setPicUrl("https://weixinshgj.duapp.com/image/logo2.jpg");
+					article1.setUrl("http://mp.weixin.qq.com/s?__biz=MzA5MTY4NTczNQ==&mid=200332988&idx=1&sn=c037f49bd41b4ed5622e0ac2e0e6a14a#rd");
+					Article article2 = new Article();
+					article2.setTitle("感谢您关注创联龙盛文化传媒，点击获取更多资讯");
+					article2.setDescription("");
+					article2.setPicUrl("https://weixinshgj.duapp.com/image/logo_s.jpg");
+					article2.setUrl("http://mp.weixin.qq.com/s?__biz=MzA5MTY4NTczNQ==&mid=200332988&idx=1&sn=c037f49bd41b4ed5622e0ac2e0e6a14a#rd");
+					articleList.add(article1);
+					articleList.add(article2);
+					newsMessage.setArticleCount(articleList.size());
+					newsMessage.setArticles(articleList);
+					respXml = MessageUtil.messageToXml(newsMessage);
 				}
 				// 取消关注
 				else if (eventType.equals(MessageUtil.EVENT_TYPE_UNSUBSCRIBE)) {
@@ -115,15 +146,24 @@ public class CoreService {
 				}
 			}
 			// 设置文本消息的内容
-			//textMessage.setContent(respContent);
+			// textMessage.setContent(respContent);
 			// 将文本消息对象转换成xml
-			//respXml = MessageUtil.messageToXml(textMessage);
-			newsMessage.setArticleCount(articleList.size());
-			newsMessage.setArticles(articleList);
-			respXml = MessageUtil.messageToXml(newsMessage);
+			// respXml = MessageUtil.messageToXml(textMessage);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return respXml;
+	}
+
+	private static String getDefaultAnswer() {
+		String[] answer = { "要不我们聊点别的？", "恩？你到底在说什么呢？", "没有听懂你说的，能否换个说法",
+				"虽然不明白你的意思，但我却能用心去感受", "听得我一头雾水，阁下的只是真是渊博啊，膜拜~",
+				"哎，我小学语文是体育老师教的，理解起来有点困难啊", "是世界变化太快，还是我不够有才？为何你说话我不明白？", };
+		return answer[getRandomNumber(answer.length)];
+	}
+
+	private static int getRandomNumber(int length) {
+		Random random = new Random();
+		return random.nextInt(length);
 	}
 }
