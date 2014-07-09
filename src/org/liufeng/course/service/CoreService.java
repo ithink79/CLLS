@@ -63,25 +63,49 @@ public class CoreService {
 				String content = requestMap.get("Content");
 				if ("1".equals(content)) {
 					Article article = new Article();
-					article.setTitle("创联龙盛文化传媒公司");
-					article.setDescription("武汉市江汉区京汉大道万科金色家园二期商业街321室");
-					article.setPicUrl("https://weixinshgj.duapp.com/image/mp.jpg");
-					article.setUrl("http://mp.weixin.qq.com/s?__biz=MzA5MTY4NTczNQ==&mid=200332988&idx=1&sn=c037f49bd41b4ed5622e0ac2e0e6a14a#rd");
+					article.setTitle("盟宠科技项目简介");
+					article.setDescription("盟宠科技缔造最好玩的宠物交友应用");
+					article.setPicUrl("http://mmbiz.qpic.cn/mmbiz/YlPL4VTWj1piagCvibxo5S6UneOtdFGtjXQKHNVCD7ZCjCpFX0NDbRxrY8SyAKwExsIibkKBAue0BQKjPlyFsNjYQ/0");
+					article.setUrl("http://mp.weixin.qq.com/s?__biz=MjM5MjI2NTIzNg==&mid=200745164&idx=1&sn=98d93be02fb752b072529eeb098b89d0#rd");
+					articleList.add(article);
+					newsMessage.setArticleCount(articleList.size());
+					newsMessage.setArticles(articleList);
+					respXml = MessageUtil.messageToXml(newsMessage);
+				} else if ("2".equals(content)) {
+					Article article = new Article();
+					article.setTitle("宠物新手上路");
+					article.setDescription("创联龍盛缔造与众不同的经典神话");
+					article.setPicUrl("https://mmbiz.qlogo.cn/mmbiz/7bm7gYcrtbyrbpbyalm0ZtpS32RtvBGF8ggNjJFm0cU05vibvo0qr7m47KlMIjRKS2qNwum7onyHwud0rV2wpPw/0");
+					article.setUrl("http://mp.weixin.qq.com/s?__biz=MzA5MTY4NTczNQ==&mid=200350057&idx=1&sn=37e64d3b2beb4d8e7f5c68a5c9c8c7e6#rd");
 					articleList.add(article);
 					newsMessage.setArticleCount(articleList.size());
 					newsMessage.setArticles(articleList);
 					respXml = MessageUtil.messageToXml(newsMessage);
 				} else if ("3".equals(content)) {
-
+					Article article = new Article();
+					article.setTitle("萌萌哒小照片");
+					article.setDescription("创联龍盛缔造与众不同的经典神话");
+					article.setPicUrl("https://mmbiz.qlogo.cn/mmbiz/7bm7gYcrtbyrbpbyalm0ZtpS32RtvBGF8ggNjJFm0cU05vibvo0qr7m47KlMIjRKS2qNwum7onyHwud0rV2wpPw/0");
+					article.setUrl("http://mp.weixin.qq.com/s?__biz=MzA5MTY4NTczNQ==&mid=200350057&idx=1&sn=37e64d3b2beb4d8e7f5c68a5c9c8c7e6#rd");
+					articleList.add(article);
+					newsMessage.setArticleCount(articleList.size());
+					newsMessage.setArticles(articleList);
+					respXml = MessageUtil.messageToXml(newsMessage);
 				} else if ("4".equals(content)) {
-
-				} else if ("5".equals(content)) {
+					Article article = new Article();
+					article.setTitle("养宠小心得");
+					article.setDescription("创联龍盛缔造与众不同的经典神话");
+					article.setPicUrl("https://mmbiz.qlogo.cn/mmbiz/7bm7gYcrtbyrbpbyalm0ZtpS32RtvBGF8ggNjJFm0cU05vibvo0qr7m47KlMIjRKS2qNwum7onyHwud0rV2wpPw/0");
+					article.setUrl("http://mp.weixin.qq.com/s?__biz=MzA5MTY4NTczNQ==&mid=200350057&idx=1&sn=37e64d3b2beb4d8e7f5c68a5c9c8c7e6#rd");
+					articleList.add(article);
+					newsMessage.setArticleCount(articleList.size());
+					newsMessage.setArticles(articleList);
+					respXml = MessageUtil.messageToXml(newsMessage);
+				} /*else if ("5".equals(content)) {
 
 				} else if ("6".equals(content)) {
 
-				} else if ("7".equals(content)) {
-
-				} else {
+				} */else {
 					textMessage.setContent(getDefaultAnswer());
 					respXml = MessageUtil.messageToXml(textMessage);
 				}
@@ -113,17 +137,11 @@ public class CoreService {
 				// 关注
 				if (eventType.equals(MessageUtil.EVENT_TYPE_SUBSCRIBE)) {
 					Article article1 = new Article();
-					article1.setTitle("创联龙盛文化传媒公司");
-					article1.setDescription("武汉市江汉区京汉大道万科金色家园二期商业街321室");
-					article1.setPicUrl("https://weixinshgj.duapp.com/image/logo2.jpg");
-					article1.setUrl("http://mp.weixin.qq.com/s?__biz=MzA5MTY4NTczNQ==&mid=200332988&idx=1&sn=c037f49bd41b4ed5622e0ac2e0e6a14a#rd");
-					Article article2 = new Article();
-					article2.setTitle("感谢您关注创联龙盛文化传媒，点击获取更多资讯");
-					article2.setDescription("");
-					article2.setPicUrl("https://weixinshgj.duapp.com/image/logo_s.jpg");
-					article2.setUrl("http://mp.weixin.qq.com/s?__biz=MzA5MTY4NTczNQ==&mid=200332988&idx=1&sn=c037f49bd41b4ed5622e0ac2e0e6a14a#rd");
+					article1.setTitle("盟宠科技有限公司");
+					article1.setDescription("欢迎关注\"盟宠科技\",更多精彩内容请点击查看...");
+					article1.setPicUrl("http://mmbiz.qpic.cn/mmbiz/YlPL4VTWj1oqqsQXPOgwEvvgDrYcQb3GJFErkEmll5DCS1LZsiap8Vcv0WyTKMIUdMmR9bPCibuqDIpsJxDnLCAg/0");
+					article1.setUrl("http://mp.weixin.qq.com/s?__biz=MjM5MjI2NTIzNg==&mid=200751013&idx=1&sn=88e3b771839ae068dcf3866a3cfd2791#rd");
 					articleList.add(article1);
-					articleList.add(article2);
 					newsMessage.setArticleCount(articleList.size());
 					newsMessage.setArticles(articleList);
 					respXml = MessageUtil.messageToXml(newsMessage);
